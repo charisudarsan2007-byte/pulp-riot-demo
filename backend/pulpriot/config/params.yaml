@@ -1,0 +1,95 @@
+# Engine parameters. Source tags: CASE (stated in the case), DEFAULT (spec starting point, tune by backtest),
+# ASSUMED (not in the case), ESTIMATED (learned from data at run time).
+# Spec section 5 keys keep the spec names. Keys marked [app] belong to the inventory/action layer.
+
+kappa:                     {value: 1,        source: DEFAULT}
+cusum_k:                   {value: 0.5,      source: DEFAULT}
+cusum_h:                   {value: 6.5,      source: DEFAULT}
+cusum_h_watch:             {value: 3.5,      source: DEFAULT}
+cusum_lower_h:             {value: 6.5,      source: DEFAULT}
+detect_signal:             {value: orders_on_company, source: DEFAULT}
+unfreeze_days:             {value: 3,        source: DEFAULT}
+sustained_rebase_days:     {value: 14,       source: DEFAULT}
+sigma_e_window:            {value: 56,       source: DEFAULT}
+sigma_e_floor:             {value: 0.08,     source: ASSUMED}      # spec DEFAULT 0.03; raised for this feed, see tests/test_detection_tuning.py
+launch_age_days:           {value: 56,       source: DEFAULT}
+sigma_e_floor_launch:      {value: 0.15,     source: DEFAULT}
+qc_level_gain:             {value: 0.15,     source: DEFAULT}
+month_boundary_guard_days: {value: 10,        source: ASSUMED}      # tuned on this feed: monthly volumes step at month boundaries
+month_boundary_gain:       {value: 0.5,      source: ASSUMED}
+event_min_ratio:           {value: 1.2,      source: ASSUMED}      # a CUSUM crossing opens an event only if the 3-day ratio is beyond 1.2x or below 1/1.2
+weekday_min_days:          {value: 56,       source: DEFAULT}
+weekday_shrink:            {value: 4,        source: DEFAULT}
+seasonal_shrink:           {value: [0.0, 0.25, 0.5], source: DEFAULT}   # history <24 / 24-35 / 36+ months
+seasonal_mask_censored:    {value: true,     source: DEFAULT}
+alpha_grid:                {value: [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60], source: DEFAULT}
+ratio_tiers:               {value: [1.5, 2.0, 3.0], source: DEFAULT}
+stage_eps:                 {value: 0.02,     source: DEFAULT}
+scen_half_lives:           {value: [2, 4, 8], source: DEFAULT}
+scen_prior:                {value: {F1: 0.3333333333, F2: 0.3333333333, F3: 0.3333333333}, source: DEFAULT}
+scen_rmax_mult:            {value: 1.5,      source: DEFAULT}
+scen_f3_half_life_hidden: {value: 3.5,      source: ASSUMED}      # growth continues faster while the peak is hidden
+scen_rmax_mult_hidden:     {value: 2.5,      source: ASSUMED}      # event not yet peaked while shelves are empty: sales understate the peak
+scen_temper:               {value: 0.5,      source: DEFAULT}
+scen_floor:                {value: 0.05,     source: DEFAULT}
+scen_exclude_oos_days:     {value: true,     source: DEFAULT}
+event_min_post_days:       {value: 4,        source: DEFAULT}
+scenario_sigma0:           {value: 0.376,    source: DEFAULT}
+scenario_grain_factor:     {value: {depot: 1.0, region: 0.8, national: 0.6}, source: ASSUMED}
+conformal_min_n:           {value: 30,       source: DEFAULT}
+decay_half_life:           {value: 12,       source: DEFAULT}
+conformal_source:          {value: engine_backtest, source: DEFAULT}
+dirichlet_alpha_weeks:     {value: 4,        source: DEFAULT}
+share_half_life_weeks:     {value: 6,        source: DEFAULT}
+dirichlet_conc_cap:        {value: 200,      source: DEFAULT}
+common_shock_rho:          {value: 0.5,      source: DEFAULT}
+n_paths:                   {value: 1000,     source: DEFAULT}
+censor_cover_red:          {value: 1,        source: DEFAULT}
+censor_cover_amber:        {value: 3,        source: DEFAULT}
+censored_fraction_limit:   {value: 0.30,     source: DEFAULT}
+depletion_k:               {value: 0.5,      source: DEFAULT}
+depletion_h:               {value: 4.0,      source: DEFAULT}
+pass_through_rho:          {value: 0.0,      source: ASSUMED}      # manual slider default = OFF
+pass_through_min_weeks:    {value: 8,        source: DEFAULT}
+price:                     {value: 60,       source: CASE}
+margin:                    {value: 0.32,     source: CASE}
+lost_sales_definition:     {value: realised, source: ASSUMED}      # 8% of realised summer revenue
+
+# Stale-source limits (spec M1)
+stale_qc_days:             {value: 2,        source: DEFAULT}
+stale_depot_days:          {value: 8,        source: DEFAULT}
+stale_monthly_days:        {value: 40,       source: DEFAULT}
+
+# Launch cold start (spec M6)
+launch_curve_interp:       {value: false,    source: ASSUMED}      # spec text interpolates; the supplied launch data moves in weekly steps
+sigma_a:                   {value: 0.30,     source: DEFAULT}
+sigma_b:                   {value: 0.69,     source: DEFAULT}
+sigma_obs:                 {value: 0.25,     source: DEFAULT}
+analog_similarity:         # five manual 0-1 scores per analog: ingredient overlap, price point, channel mix, launch season, promo intensity
+  value:
+    DP:
+      DB: {ingredient: 0.50, price: 1.00, channel: 0.80, season: 1.00, promo: 0.60}
+      PP: {ingredient: 0.50, price: 1.00, channel: 0.80, season: 1.00, promo: 0.60}
+  source: ASSUMED
+
+# Inventory and action layer [app]
+service_level:             {value: 0.95,     source: ASSUMED}
+old_cover_rule_days:       {value: 21,       source: CASE}
+overstock_cover_days:      {value: 45,       source: DEFAULT}
+review_days:               {value: 7,        source: DEFAULT}
+shelf_life_days:           {value: 90,       source: CASE}
+mtqc_min_remaining_days:   {value: 60,       source: CASE}
+gt_min_remaining_days:     {value: 0,        source: ASSUMED}      # GT rule unverified
+transfer_cost_per_bottle:  {value: 1.5,      source: CASE}
+copacker_cost_premium:     {value: 0.25,     source: CASE}
+copacker_max_volume_share: {value: 0.10,     source: CASE}
+copacker_notice_days:      {value: 14,       source: CASE}
+inhouse_headroom_share:    {value: 0.05,     source: CASE}         # 95% utilisation -> 5% headroom
+air_freight_multiple:      {value: 5,        source: CASE}
+air_freight_inr_per_kg:    {value: 400,      source: CASE}
+frozen_pulp_life_days:     {value: 180,      source: CASE}
+pulp_expiry_flag_days:     {value: 120,      source: CASE}
+approval_sla_hours:        {value: 24,       source: ASSUMED}      # per approval level before escalation
+transfer_donor_min_cover_days: {value: 14,   source: ASSUMED}
+risk_red_cover_days:       {value: 7,        source: ASSUMED}
+risk_amber_cover_days:     {value: 14,       source: ASSUMED}

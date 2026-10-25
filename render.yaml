@@ -1,0 +1,19 @@
+# I am not fully certain this file's exact keys match Render's current Blueprint
+# schema (it can change). If Render rejects it, skip it and configure the service
+# manually in the dashboard instead, using these same values:
+#   Root Directory:  backend
+#   Build Command:   pip install -r requirements.txt
+#   Start Command:   uvicorn pulpriot.api.main:app --host 0.0.0.0 --port $PORT
+#   Plan:            Free
+# No environment variables are required: pulpriot/settings.py resolves the
+# workbook path relative to the source file's own location, not the working
+# directory, so it finds Pulp_Riot_Synthetic_Dataset.xlsx at the repo root
+# regardless of Root Directory.
+services:
+  - type: web
+    name: pulp-riot-backend
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn pulpriot.api.main:app --host 0.0.0.0 --port $PORT
+    plan: free

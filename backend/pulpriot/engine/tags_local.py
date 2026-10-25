@@ -1,0 +1,5 @@
+"""Plain-language notes attached to engine outputs."""
+ANALOG_OUTSIDE_WINDOW = "Analog launches fall before the data window; curves are the launch template times last season's analog run-rate."
+TEMPLATE_ASSUMED = "Launch template (R03) and analog similarity scores are ASSUMED inputs."
+EXTRAPOLATED = "EXTRAPOLATING: no own history; read as a planning range, not a measured forecast."
+UNITS_SOLD_NOTE = "No uncensored orders column in the feed: detection uses units_sold and skips stockout-flagged days."

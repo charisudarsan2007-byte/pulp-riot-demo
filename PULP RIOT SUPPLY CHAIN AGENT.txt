@@ -1,0 +1,160 @@
+PULP RIOT SUPPLY CHAIN AGENT
+Verified Green Capabilities Directory & Plain-Language Spec
+
+================================================================================
+A. CONTROL TOWER & INSTANT ANSWERS
+================================================================================
+
+A1 [P0] - Ask the Agent Anything
+Description: Type simple questions about stock or risk, and get instant answers with data source and freshness tags.
+
+A2 [P0] - Quick Stock Checker
+Description: Select any product, warehouse, or sales channel to immediately check stock levels and forecast status.
+
+A3 [P0] - Executive Summary Dashboard
+Description: View yesterday Quick commerce sales, stockout risks, excess stock, fruit pulp supplies, and urgent approvals in one screen.
+
+A4 [P0] - Regional Risk Heatmap
+Description: A color-coded grid (Red/Yellow/Green) displaying risk across 5 flavors, 9 warehouses, and key ingredients.
+
+A5 [P0] - Data Source Trust Badges
+Description: Labels every number clearly as real fact, calculation, or estimate, along with when it was last updated.
+
+A6 [P0] - Top 5 Daily Action Items
+Description: Lists the 5 most urgent tasks ranked by financial impact so managers know what to solve first.
+
+A7 [P1] - Weekly Review One-Pager
+Description: Automatically exports a concise one-page summary for weekly team meetings to replace outdated monthly packs.
+
+A8 diagram displaying a depot rebalancing map showing five feasible lanes designed to transfer stock from surplus donor depots to shortage depots
+
+A9 [P0] - End-to-End Supply Chain "Pulse" Sankey FlowDescription: Displays a single horizontal flow diagram tracking volume from Suppliers (Raw Pulp kg) $\rightarrow$ Plants & Co-Packer (Bottles) $\rightarrow$ In-Transit Trucks $\rightarrow$ 9 Depots $\rightarrow$ 3 Channels (GT / MT / QC).   Pictorial Mechanics: Line thickness scales with bottle volume, while nodes light up Red / Amber / Green at active bottlenecks (such as a red landslide block on the passionfruit highway or an amber 60-day shelf-life filter in front of Modern Trade and Quick Commerce).  
+================================================================================
+B. DEMAND FORECASTING
+================================================================================
+
+B1 [P0] - Multi-Week Demand Forecast
+Description: Predicts bottle sales and revenue for 1, 2, and 4 weeks ahead, plus a long-term 6–8 week fruit outlook. Crearly differentiate 
+True values, Upper end, middle-end, low-end forecasts
+
+B3 [P0] - Daily Quick Commerce Sales Monitor
+Description: Tracks yesterday's sales from quick-delivery apps (Blinkit, Zepto, Swiggy) against weekly averages.
+
+B4 [P0] - Spike Alarm
+Description: Triggers instant alerts when online orders surge (1.5x, 2x, or 3x baseline) and calculates money at stake.
+
+B8 [P1] - New Product Sales Predictor
+Description: Predicts sales for brand-new flavors with no history by modeling them after similar existing flavors.
+
+B9 [P1] - Marketing Campaign Calendar
+Description: Mentions upcoming promotions and influencer campaigns so planners can prepare for expected demand jumps.(not text heavy)
+
+B10 [P0] - Forecast Accuracy Scorecard
+Description: Compares past predictions against actual sales to highlight overestimate or underestimate trends by warehouse.
+
+B11 [P1] - Plain-English Sales Explainer
+Description: Translates complex statistical changes into simple notes like: "Dragon Passion is selling at 4x normal speed (+300%), risking Rs. X loss."
+Highlight this 1 line and simple line graph(true vs predicted(high,low,medium) of the particular product selected in B4 
+
+================================================================================
+C. INVENTORY & WAREHOUSE MANAGEMENT
+================================================================================
+
+C1 [P0] - Live Warehouse Stock Table
+Description: Displays the most recently reported inventory across all 9 warehouses and 5 flavors.bar chart displays the non-interchangeable stock breakdown by location—including plant finished goods, in transit, depot, and raw pulp—across five different product varieties.
+
+C2 [P0] - Real-Time Inventory Estimate
+Description: Estimates exact stock levels today between weekly reports by subtracting recent sales from shipments. 
+
+C3 [P0] - Stock Location Breakdown
+Description: Separates inventory by factory stock, items in trucks, warehouse stock, and raw fruit pulp.
+
+C4 [P0] - Days-of-Supply Counter
+Description: Calculates how many days current warehouse stock will last based on expected daily sales.
+
+C5 [P0] - Stockout Date Predictor
+Description: Shows the exact calendar date a warehouse will run out of stock under normal and high demand.
+
+C6 [P0] - Smart Safety Stock Targets
+Description: Replaces rigid rules with custom stock buffers based on lead times, shelf life, and demand jumps.
+
+C7: sellable-life clock (P0): Track bottle age and show days left until stock becomes unsellable to MT/QC (60-day rejection rule on a 90-day life). Highlight days left
+
+C10 [P1] - Oldest-Stock First Priority
+Description: Recommends shipping products closest to expiry first (FEFO) to eliminate warehouse waste.
+
+C12 [P0] - Stock Transfer Preview
+Description: Shows exact stock buffers for both sending and receiving warehouses before moving stock.
+
+C15 [P0] - Regional Demand Shift Alert
+Description: Flags regional warehouses where actual consumer demand is diverging from monthly supply plans.
+
+
+Interactive pictorial representation for C1,C2,C4,C5,C6eft Side (Vertical Liquid Tank for C1 & C2): Shows a warehouse tank where the ghost outline marks Last Week's Reported Stock (C1), the green "+" arrow shows Receipts Arrived, the red "−" arrow shows Estimated Sales Since Report, and the solid liquid level shows Today's Nowcast (C2). A horizontal dashed line across the tank marks the Smart Safety Stock Target (C6) vs. the old flat 21-day rule.   Right Side (Horizontal Burn-Down Timeline Bar for C4 & C5): Projects a calendar bar forward from today showing Days of Cover (C4), with an amber flag at the Earliest-Likely Stockout Date ($P10$) and a red flag at the Expected Stockout Date ($P50$) (C5).
+
+C16 [P0] - Root-Cause Domino & Impact Map
+Description: Traces domino effects across the business (e.g., late online spike signal -> depleted warehouse stock -> empty retail shelf). Shows both how sales spikes drain stock and how stockouts hide true customer demand) label should be easy to understand for user
+
+C17 [P0] - Sales Surge Simulator
+Description: Interactive slider (1x to 4x surge) showing how fast each warehouse runs out of stock during a spike.
+
+C18 [P0] - Information Delay Cost Clock
+Description: Tracks days elapsed between a store surge and planner awareness, calculating only the financial cost per day of delay.
+
+C21 [P1] - Mitigation "Speed vs. Cost" Quadrant Bubble ChartDescription: Visually compares the 4 ways to fix a warehouse shortage (Inter-Depot Transfer, Plant Replenishment, Co-Packer Order, or Do Nothing).   Pictorial Mechanics: Plots each option as a bubble where the X-axis = Arrival Date vs. Depot Stockout Date, Y-axis = Cost in ₹ per Bottle, and Bubble Size = Bottles Delivered. Any option arriving after the warehouse's $P10$ stockout date falls into a shaded red "Arrives Too Late" zone
+
+================================================================================
+E. SUPPLY, FACTORY & TRANSPORT
+================================================================================
+
+E1 [P0] - Fruit Pulp Supply Runway
+Description: Shows how many days of passionfruit and dragonfruit pulp remain at current speeds
+
+E2 [P1] - Ingredient Conflict Alert
+Description: Shows which drinks will lose production volume when shared fruit pulp supplies run low. Highlight Red, Green, Yellow
+
+E8 [P0] - Production Capacity Options
+Description: Separates in-house plant extra capacity (+5%) from outsourced co-packer capacity (+10%).
+
+E9 [P0] - Co-Packer Deadline Clock
+Description: Countdown timer showing the last date to order extra production given required 2-week notice times.
+
+E10 [P1] - Production Mix Reprioritizer
+Description: Reassigns factory bottling lines to urgent high-demand flavors and shows affected low-priority drinks.
+
+E13 [P1] - Pulp Expiry Monitor
+Description: Alerts managers when frozen fruit pulp stored in freezers approaches its 6-month usability limit. Display when 120 days has been reached.
+
+E15 [P0] - Scarce Pulp Trade-off Comparer
+Description: Compares profit margins of making Passionfruit Punch vs. Dragon Passion when raw passionfruit is short. pictorial
+
+E17 [P1] - Inbound Corridor & Import Vessel Timeline (Pictorial for E3, E6, E14)Description: Maps inbound raw material vulnerability across road and sea routes.   Pictorial Mechanics: Displays a 2-lane visual transit track:Lane 1 (Hill-Region Passionfruit Highway): Shows the 3-day road truck icon, a monsoon/landslide hazard toggle (Green/Amber/Red), and an airplane icon showing the emergency air-freight bridge at 5x cost (₹400/kg) when the road closes.   Lane 2 (Imported Dragonfruit Sea-to-Plant Track): Shows a ship icon moving along a 42-to-56-day (6–8 week) lead-time bar aligned against quarterly order cutoff dates (E6) and marketing's 14-day launch notice gate
+================================================================================
+F. FINANCIAL ENGINE
+================================================================================
+
+F2 / F4 [P0] - Financial Impact & Margin Switch
+Description: Shows expected money lost if no action is taken, with a toggle between gross revenue and actual profit margin.
+Pictorial Mechanics:
+Only for recommended actions
+
+    Left Chart (Waterfall): Stacks red bars for Do-Nothing Losses (Stockout Lost Margin + Overstock Write-offs + Emergency Air Freight) against green step-down bars for Agent Mitigation Costs (₹1.50/bottle Transfers + Co-Packer Premium) to highlight Net Rupees Saved.
+
+================================================================================
+G. HUMAN APPROVAL & ADOPTION
+================================================================================
+
+G4 / G11 [P0] - Action Expiry & Smart Alert Center
+Description: Shows decision deadlines with auto-escalation to the COO. Merges duplicate alerts into a single clear view.
+
+
+
+================================================================================
+H. CRISIS REPLAY & RESILIENCE TESTING
+================================================================================
+
+H1 / H2 / H3 [P0] - Historical Crisis Simulator
+Description: Replays past sales surges and the 3-week May highway blockage to show how early detection prevents losses.
+
+H4 / H6 [P0] - Agent vs. Past Performance Scorecard
+Description: Compares last summer's actual results with the agent's recommended path on stockouts, freight costs, and revenue saved.
